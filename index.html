@@ -28,16 +28,24 @@
             <div v-for="variant in variants" :key="variant.variantId">
                 <p>{{ variant.variantColor }}</p>
             </div>
+
+            <div class="cart">
+                <p>Cart({{ cart }})</p>
+            </div>
+
+            <button v-on:click="cart += 1">Add to cart</button>
+            <!-- Список размеров -->
+            <!--<h2>Available Sizes:</h2>
+            <ul>
+                <li v-for="size in sizes" :key="size">{{ size }}</li>
+            </ul>-->
         </div>
 
     </div>
 
-    <!-- Ссылка с динамическим атрибутом href
-    <a :href="link">More products like this</a>
-     Условный рендеринг элемента <span>
-    <span v-if="onSale">On Sale</span>
+    <!--<a :href="link">More products like this</a>
+    <span v-if="onSale" class="sale-text">On Sale</span>
 
-     Проверочная №1
     <h1>Welcome to My Vue App</h1>
     <p>{{ description }}</p>-->
 
