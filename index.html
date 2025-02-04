@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script defer src="js/vue.min.js"></script>
+    <script defer src="js/vue.js"></script>
     <script defer src="js/main.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <title>Product App</title>
@@ -14,27 +14,11 @@
 <div id="app">
 
     <div class="cart">
-        <p>Cart({{  cart.length }})</p>
+        <p>Cart({{ cart.length }})</p>
     </div>
     <product :premium="premium" @add-to-cart="updateCart"></product>
-    <!--<a :href="link">More products like this</a>
-   <span v-if="onSale" class="sale-text">On Sale</span>
 
-   <h1>Welcome to My Vue App</h1>
-   <p>{{ description }}</p>-->
-    <h2>Корзина товаров</h2>
-    <div v-if="cart.length === 0">
-        <p>Ваша корзина пуста.</p>
-    </div>
-    <div v-else>
-        <div class="cart-item" v-for="item in cart" :key="item.id">
-            <span>{{ item.name }} ({{ item.price }} руб.)</span>
-            <button class="remove-button" @click="removeFromCart(item.id)">Удалить</button>
-        </div>
-    </div>
 
 </div>
-
-
 </body>
 </html>
