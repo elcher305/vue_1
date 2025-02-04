@@ -93,3 +93,33 @@ textarea {
     font-weight: bold;
     margin-left: 10px;
 }
+
+.out-of-stock {
+    text-decoration: line-through;
+}
+
+
+.card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+    text-align: left;
+    margin: 20px auto;
+}
+
+.sale-message {
+    color: red;
+    font-weight: bold;
+}
+
+.remove-button {
+    background-color: #1E95EA;
+    color: white;
+    border: none;
+    padding: 5px 4px;
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    background-color: #1E95EA;
+}

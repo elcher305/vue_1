@@ -12,44 +12,29 @@
 </head>
 <body>
 <div id="app">
-    <div class="product">
 
-        <div class="product-image">
-            <img  :src="image" :alt="altText"/>
+    <div class="cart">
+        <p>Cart({{  cart.length }})</p>
+    </div>
+    <product :premium="premium" @add-to-cart="updateCart"></product>
+    <!--<a :href="link">More products like this</a>
+   <span v-if="onSale" class="sale-text">On Sale</span>
+
+   <h1>Welcome to My Vue App</h1>
+   <p>{{ description }}</p>-->
+    <h2>Корзина товаров</h2>
+    <div v-if="cart.length === 0">
+        <p>Ваша корзина пуста.</p>
+    </div>
+    <div v-else>
+        <div class="cart-item" v-for="item in cart" :key="item.id">
+            <span>{{ item.name }} ({{ item.price }} руб.)</span>
+            <button class="remove-button" @click="removeFromCart(item.id)">Удалить</button>
         </div>
-
-        <div class="product-info">
-            <h1>{{ product }}</h1>
-            <p v-if="inStock">In Stock</p>
-            <p v-else>Out of Stock</p>
-            <ul>
-                <li v-for="detail in details">{{ detail }}</li>
-            </ul>
-            <div v-for="variant in variants" :key="variant.variantId">
-                <p @mouseover="updateProduct(variant.variantImage)">
-                    {{ variant.variantColor }}</p>
-            </div>
-
-            <div class="cart">
-                <p>Cart({{ cart }})</p>
-            </div>
-
-            <button v-on:click="addToCart">Add to cart</button>
-            <!-- Список размеров -->
-            <!--<h2>Available Sizes:</h2>
-            <ul>
-                <li v-for="size in sizes" :key="size">{{ size }}</li>
-            </ul>-->
-        </div>
-
     </div>
 
-    <!--<a :href="link">More products like this</a>
-    <span v-if="onSale" class="sale-text">On Sale</span>
-
-    <h1>Welcome to My Vue App</h1>
-    <p>{{ description }}</p>-->
-
 </div>
+
+
 </body>
 </html>
