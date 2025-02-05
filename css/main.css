@@ -1,7 +1,15 @@
 body {
-    font-family: tahoma;
+    font-family: Tahoma;
     color:#282828;
-    margin: 0px;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color:#282828;
+}
+
+a:hover {
+    color: gray;
 }
 
 .nav-bar {
@@ -12,15 +20,14 @@ body {
 
 .product {
     display: flex;
-    flex-flow: wrap;
+    flex-wrap: wrap;
     padding: 1rem;
 }
 
 img {
-    border: 1px solid #d8d8d8;
     width: 70%;
     margin: 40px;
-    box-shadow: 0px .5px 1px #d8d8d8;
+    box-shadow: 0 1px 10px #d8d8d8;
 }
 
 .product-image {
@@ -33,17 +40,50 @@ img {
     width: 50%;
 }
 
+.size-product {
+    margin-top: 20px;
+}
+
+.size {
+
+   margin-top: 15px;
+}
+
+.size > a {
+    margin-top: 20px;
+    padding-right: 10px;
+}
+
+.size > a:hover{
+    color: red;
+}
+
 .color-box {
     width: 40px;
     height: 40px;
     margin-top: 5px;
+    border-radius: 5px;
 }
 
+
 .cart {
-    margin-right: 25px;
-    float: right;
+    text-align: center;
+    margin: 25px 30px;
     border: 1px solid #d8d8d8;
-    padding: 5px 20px;
+    height: 50px;
+    width: 130px;
+    float: right;
+    background-color: #1E95EA;
+    border-radius: 5px;
+}
+
+.cart > p {
+    color: white;
+}
+
+.cart:hover {
+    color: gray;
+    background-color: lightgrey;
 }
 
 button {
@@ -51,9 +91,15 @@ button {
     border: none;
     background-color: #1E95EA;
     color: white;
-    height: 40px;
-    width: 100px;
+    height: 45px;
+    width: 160px;
+    border-radius: 8px;
     font-size: 14px;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: lightgrey;
 }
 
 .disabledButton {
@@ -83,43 +129,36 @@ textarea {
     cursor: pointer;
 }
 
+.tab:hover {
+    color: gray;
+}
+
 .activeTab {
     color: #16C0B0;
     text-decoration: underline;
 }
 
-.sale-text {
+.OutOfStock {
+    text-decoration: line-through
+}
+
+#rec {
+    width: 10%;
+    height: 15px;
+    margin-top: 29px;
+}
+
+#not_rec{
+    width: 10%;
+    margin-top: 29px;
+    height: 15px;
+}
+
+.rec {
+    display: block;
+
+}
+
+.sale {
     color: red;
-    font-weight: bold;
-    margin-left: 10px;
-}
-
-.out-of-stock {
-    text-decoration: line-through;
-}
-
-
-.card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 300px;
-    text-align: left;
-    margin: 20px auto;
-}
-
-.sale-message {
-    color: red;
-    font-weight: bold;
-}
-
-.remove-button {
-    background-color: #1E95EA;
-    color: white;
-    border: none;
-    padding: 5px 4px;
-    cursor: pointer;
-}
-
-.remove-button:hover {
-    background-color: #1E95EA;
 }

@@ -5,20 +5,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
     <script defer src="js/vue.js"></script>
     <script defer src="js/main.js"></script>
-    <link rel="stylesheet" href="css/main.css">
     <title>Product App</title>
 </head>
 <body>
 <div id="app">
-
     <div class="cart">
-        <p>Cart({{ cart.length }})</p>
+        <p>В корзине ({{ cart.length }})</p>
     </div>
-    <product :premium="premium" @add-to-cart="updateCart"></product>
-
-
+    <product :premium="premium" @add-to-cart="updateCart" @remove-from-cart="eraseCart"></product>
 </div>
 </body>
 </html>
+
