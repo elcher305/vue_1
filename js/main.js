@@ -29,7 +29,13 @@ Vue.component('product-review', {
              <option>1</option>
            </select>
          </p>
-         
+         <p>
+           <label class="rec">Смогли бы вы порекоментовать этот товар?</label>
+           <input type="radio" id="rec" name="drone" value="Да" v-model="recommended">
+           <label for="rec">Да</label>
+           <input type="radio" id="not_rec" name="drone" value="Нет" v-model="recommended">
+           <label for="not_rec">Нет</label>
+         </p>
          <p>
            <input type="submit"> 
          </p>
@@ -86,11 +92,14 @@ Vue.component('product', {
        <div class="product-info">
            <h1>{{ title }}</h1>
            <p>{{description}}</p>
-           <span class="sale">{{ sale }}</span>
+           <h2><span class="sale">{{ sale }}</h2></span>
            <p v-if="inStock" >В наличии</p>
+            <ul>
+                <li v-for="detail in details">{{ detail }}</li>
+           </ul>
            <p v-else :class="{ OutOfStock:!inStock }">Нет в наличии</p>
            <p v-if="errors.length">
-                <b>Исправьте текущие ошибки:</b>
+                <b>Исправьте  ошибки:</b>
                 <ul>
                     <li v-for="error in errors">{{ error }}</li>
                 </ul>
@@ -102,11 +111,12 @@ Vue.component('product', {
                    :style="{ backgroundColor:variant.variantColor }"
                    @click="updateProduct(index)"
            ></div>
+           
                 <div class="size-product">
-                    <a value="">Выберите размер</a>
-                    <div class="size">
-                        <a v-for="size in sizes" :value="size">{{size}}</a>
-                    </div>
+                   <a value="">Выберите размер</a>
+                   <a v-for="size in sizes" :key="size">
+                       <button @click="selectedSize(size)">{{ size }}</button>
+                   </a>
                 </div>
                 
            <button
@@ -131,10 +141,12 @@ Vue.component('product', {
         return {
             product: "Socks",
             brand: 'Vue Mastery',
-            description: "Пара теплых носков",
+            description: "Пара теплых носков. Эти носки изготовлены из высококачественного хлопка, обеспечивают комфорт и долговечность.",
+            inStock: true,
             selectedVariant: 0,
-            selectedSize: '',
+            selectedSize: 0,
             altText: "Socks",
+            details: ['80% хлопок', '20% полиэстер', 'Унисекс'],
             link: "https://www.ozon.ru/category/odezhda-obuv-i-aksessuary-7500/?text=%D0%BD%D0%BE%D1%81%D0%BA%D0%B8&clid=11468697-1",
             onSale: true,
             variants: [
@@ -148,12 +160,12 @@ Vue.component('product', {
                     variantId: 2235,
                     variantColor: 'blue',
                     variantImage: "./assets/vmSocks-blue-onWhite.jpg",
-                    variantQuantity: 20
+                    variantQuantity: 0
                 }
             ],
             sizes: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
             reviews: [],
-            errors: []
+            errors: [],
         }
     },
     methods: {
@@ -188,22 +200,16 @@ Vue.component('product', {
         title() {
             return this.brand + ' ' + this.product;
         },
-        image() {
-            return this.variants[this.selectedVariant].variantImage;
-        },
         inStock() {
             return this.variants[this.selectedVariant].variantQuantity
         },
-        sale(){
-            return this.onSale ? (`${this.brand} ${this.product} Скидка!`) : (`${this.brand} ${this.product} без скидки.`);
+        image() {
+            return this.variants[this.selectedVariant].variantImage;
         },
-        shipping() {
-            if (this.premium) {
-                return "Бесплатно";
-            } else {
-                return "190₽"
-            }
-        }
+        sale(){
+            return this.onSale ? (`${this.brand} ${this.product} Распродажа!`) : (`${this.brand} ${this.product} без скидки.`);
+        },
+
     }
 })
 
@@ -230,6 +236,9 @@ Vue.component('product-tabs', {
        <div v-show="selectedTab === 'Оставить отзыв'">
          <product-review></product-review>
      </div>
+     <div v-show="selectedTab === 'Доставка'">
+        <product-del></product-del>
+     </div>
      <div v-show="selectedTab === 'Детали'">
         <product-detail></product-detail>
     </div>
@@ -243,7 +252,7 @@ Vue.component('product-tabs', {
     },
     data() {
         return {
-            tabs: ['Отзывы', 'Оставить отзыв', 'Детали'],
+            tabs: ['Отзывы', 'Оставить отзыв','Доставка','Детали'],
             selectedTab: 'Отзывы'
         }
     }
@@ -261,6 +270,21 @@ Vue.component('product-detail', {
     }
 })
 
+Vue.component('product-del', {
+    template:`
+    <p>Доставка: {{ shipping }}</p>`,
+    data () {
+    },
+    computed: {
+        shipping() {
+            if (this.premium) {
+                return "Бесплатно";
+            } else {
+                return "299₽"
+            }
+        }
+    }
+})
 let app = new Vue({
     el: '#app',
     data: {

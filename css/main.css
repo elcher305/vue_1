@@ -30,39 +30,18 @@ img {
     box-shadow: 0 1px 10px #d8d8d8;
 }
 
-.product-image {
-    width: 80%;
-}
-
 .product-image,
 .product-info {
     margin-top: 10px;
     width: 50%;
 }
 
-.size-product {
-    margin-top: 20px;
-}
-
-.size {
-
-   margin-top: 15px;
-}
-
-.size > a {
-    margin-top: 20px;
-    padding-right: 10px;
-}
-
-.size > a:hover{
-    color: red;
-}
-
 .color-box {
     width: 40px;
     height: 40px;
     margin-top: 5px;
-    border-radius: 5px;
+    border-radius:7px;
+
 }
 
 
@@ -71,21 +50,36 @@ img {
     margin: 25px 30px;
     border: 1px solid #d8d8d8;
     height: 50px;
-    width: 130px;
+    width: 140px;
     float: right;
     background-color: #1E95EA;
     border-radius: 5px;
 }
 
 .cart > p {
+    padding: 0px;
     color: white;
 }
 
 .cart:hover {
     color: gray;
-    background-color: lightgrey;
+    background-color: lightgray;
 }
 
+.size-product > a > button {
+    color: black;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.size-product > a > button:focus {
+    border: none;
+    color: white;
+    background-color: green;
+}
 button {
     margin-top: 30px;
     border: none;
@@ -93,13 +87,14 @@ button {
     color: white;
     height: 45px;
     width: 160px;
-    border-radius: 8px;
     font-size: 14px;
-    margin-bottom: 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
+
 button:hover {
-    background-color: lightgrey;
+    background-color: lightskyblue;
 }
 
 .disabledButton {
@@ -137,6 +132,12 @@ textarea {
     color: #16C0B0;
     text-decoration: underline;
 }
+select {
+    display: block;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
 
 .OutOfStock {
     text-decoration: line-through
@@ -162,3 +163,4 @@ textarea {
 .sale {
     color: red;
 }
+
