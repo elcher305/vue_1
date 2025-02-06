@@ -40,8 +40,7 @@ Vue.component('product-review', {
            <input type="submit"> 
          </p>
         </form>
-        
-        
+       
  `,
     data() {
         return {
@@ -54,25 +53,61 @@ Vue.component('product-review', {
     },
     methods:{
         onSubmit() {
-            if(this.name && this.review && this.rating) {
+            if(this.name && this.review && this.rating && this.recommended) {
                 let productReview = {
                     name: this.name,
                     review: this.review,
-                    rating: this.rating
+                    rating: this.rating,
+                    recommended: this.recommended
                 }
+                let existingReviews = JSON.parse(sessionStorage.getItem('productReviews') || '[]');
+                existingReviews.push(productReview);
+                sessionStorage.setItem('productReviews', JSON.stringify(existingReviews));
+
                 eventBus.$emit('review-submitted', productReview)
                 this.name = null
                 this.review = null
                 this.rating = null
+                this.recommended = null
+                this.errors = []
             } else {
+                this.errors = [];
                 if(!this.name) this.errors.push("Имя обязательно.")
                 if(!this.review) this.errors.push("Отзыв обязателен.")
                 if(!this.rating) this.errors.push("Рейтинг обязателен.")
             }
         },
-    }
+       
+    },
 
 })
+
+Vue.component('product-details', {
+    template: `
+      <div>
+        <p v-if="!reviews.length">Нет отзывов.</p>
+        <a>
+          <li v-for="(review, index) in reviews" :key="index">
+            <b>{{ review.name }}</b>: {{ review.review }} (Рейтинг: {{ review.rating }})
+          </li>
+        </a>
+      </div>
+    `,
+    data() {
+      return {
+        reviews: [],
+      };
+    },
+    mounted() {
+      // При монтировании компонента получаем отзывы из sessionStorage
+      this.reviews = JSON.parse(sessionStorage.getItem('productReviews') || '[]');
+  
+      // Подписываемся на событие 'review-submitted' для обновления отзывов
+      eventBus.$on('review-submitted', productReview => {
+        this.reviews = JSON.parse(sessionStorage.getItem('productReviews') || '[]');
+      });
+    },
+});
 
 
 
