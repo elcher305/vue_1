@@ -94,10 +94,10 @@ Vue.component('product', {
            <p>{{description}}</p>
            <h2><span class="sale">{{ sale }}</h2></span>
            <p v-if="inStock" >В наличии</p>
+           <p v-else :class="{ 'out-of-stock':!inStock }">Нет в наличии</p>
             <ul>
                 <li v-for="detail in details">{{ detail }}</li>
            </ul>
-           <p v-else :class="{ OutOfStock:!inStock }">Нет в наличии</p>
            <p v-if="errors.length">
                 <b>Исправьте  ошибки:</b>
                 <ul>
