@@ -139,8 +139,8 @@ select {
     border-radius: 5px;
 }
 
-.OutOfStock {
-    text-decoration: line-through
+.out-of-stock {
+    text-decoration: line-through;
 }
 
 #rec {
