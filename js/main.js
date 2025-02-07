@@ -259,7 +259,7 @@ Vue.component('product-tabs', {
          >{{ tab }}</span>
        </ul>
        <div v-show="selectedTab === 'Отзывы'">
-         <p v-if="!reviews.length"> Сейчас нет отзывов.</p>
+         <p v-if="!reviews.length"></p>
          <ul>
            <li v-for="review in reviews">
            <p>{{ review.name }}</p>
