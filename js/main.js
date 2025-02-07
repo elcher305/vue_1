@@ -87,9 +87,9 @@ Vue.component('product-details', {
       <div>
         <p v-if="!reviews.length">Нет отзывов.</p>
         <a>
-          <li v-for="(review, index) in reviews" :key="index">
+          <a v-for="(review, index) in reviews" :key="index">
             <b>{{ review.name }}</b>: {{ review.review }} (Рейтинг: {{ review.rating }})
-          </li>
+          </a>
         </a>
       </div>
     `,
